@@ -13,6 +13,8 @@ int main()
     int x;
     char *mesg = "hello world!";
     int *p;
+    
+    // In Windows' IDE, such as Microsoft Visual Studio, you may need to use "_ams" instead.
     asm
     {
         mov dword ptr [x],233
@@ -21,7 +23,7 @@ int main()
     }
     
     printf("x=%d\n",x);
-    printf("*p=%s\n",*p);
+    printf("*p=%s\n",*p);// This line may cause a crash.
     getchar();
     return 0;
 }
