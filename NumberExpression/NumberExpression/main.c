@@ -66,9 +66,12 @@ int main(int argc, const char * argv[]) {
     printf("INT32_MAX: %d\n", INT32_MAX);
     printf("INT32_MIN: %d\n", INT32_MIN);
     
-    res = tadd_ok((1<<31)-1, 0);// Do not use 65536*65536-1, but U can use 2147483647
+    // Do not use 65536*65536/2-1, but U can use "2147483647" or "(1<<31)-1"
+    // "65536*65536/2-1" first overflows at "65536*65536"
+    // Use "65536/2*65536-1"
+    res = tadd_ok(65536/2*65536-1, 0);
     printf("res: %d\n", res);
-    res = tadd_ok((1<<31)-1, 1);
+    res = tadd_ok(65536/2*65536-1, 1);
     printf("res: %d\n", res);
     res = tadd_ok(-(1<<31), 0);
     printf("res: %d\n", res);
