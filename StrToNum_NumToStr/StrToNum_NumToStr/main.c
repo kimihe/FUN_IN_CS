@@ -68,9 +68,9 @@ int main(int argc, const char * argv[]) {
     char s[129];
     
     stringWithInteger(num, s);
-    printf("String with integer %d is: %s\n", num, s);
+    printf("String with integer %d is: (string)\"%s\"\n", num, s);
     
-    printf("Integer value of string \"%s\" is: %d\n", s, integerValue(s));
+    printf("Integer value of string \"%s\" is: (integer)%d\n", s, integerValue(s));
     
     return 0;
 }
