@@ -59,7 +59,7 @@ void stringWithInteger(int n, char s[]) {
     }
     
     s[i++] = '\0';
-    reverse(s); // reverse this char string
+    reverse(s); // reverse this char array
 }
 
 int main(int argc, const char * argv[]) {
