@@ -49,7 +49,7 @@ void treePrint(TreePtr p)
 {
     if (p) {
         treePrint(p->left);
-        printf("%d %4ld ", p->number, p->count);
+        printf("Number: %4d, Count: %4ld\n", p->number, p->count);
         treePrint(p->right);
     }
 }
@@ -86,6 +86,29 @@ int getNumber()
 
 int main(int argc, const char * argv[]) {
     
+#if USE_DEBUG
+    TreePtr root = NULL;
+    int number = 0;
+    while (number < 11) {
+        root = addTree(root, number);
+        number++;
+    }
+    
+    number = 5;
+    while (number < 11) {
+        root = addTree(root, number);
+        number++;
+    }
+    
+    number = 9;
+    while (number < 11) {
+        root = addTree(root, number);
+        number++;
+    }
+    
+    treePrint(root);
+    
+#else
     
     TreePtr root = NULL;
     int number;
@@ -93,5 +116,6 @@ int main(int argc, const char * argv[]) {
         root = addTree(root, number);
     treePrint(root);
     
+#endif
     return 0;
 }
