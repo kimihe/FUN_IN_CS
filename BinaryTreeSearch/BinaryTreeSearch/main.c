@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#define USE_DEBUG 1
+#define USE_DEBUG 0
 
 
 typedef struct tnode *TreePtr;
@@ -54,68 +54,29 @@ void treePrint(TreePtr p)
     }
 }
 
-int getNumber()
-{
-#if USE_DEBUG
-    static int i = 0;
-    return i;
-#endif
-
-    
-    int c;
-    char buf[20];
-    char *w = buf;
-    
-    while (isspace(c = getchar()))
-        ;
-    
-    while ((c = getchar()) != EOF) {
-        if (isdigit(c))
-            *w = c;
-        else {
-            *w = '\0';
-            return atoi(buf);
-        }
-        w++;
-    }
-    
-    *w = '\0';
-    return atoi(buf);
-}
-
-
 int main(int argc, const char * argv[]) {
-    
-#if USE_DEBUG
-    TreePtr root = NULL;
-    int number = 0;
-    while (number < 11) {
-        root = addTree(root, number);
-        number++;
-    }
-    
-    number = 5;
-    while (number < 11) {
-        root = addTree(root, number);
-        number++;
-    }
-    
-    number = 9;
-    while (number < 11) {
-        root = addTree(root, number);
-        number++;
-    }
-    
-    treePrint(root);
-    
-#else
     
     TreePtr root = NULL;
     int number;
-    while ((number = getNumber()) < 11)
-        root = addTree(root, number);
-    treePrint(root);
+    int res;
     
+    printf("Please input integer numbers.\n"
+           "Any non-numeric chars will end inputing.\n\n: ");
+    while( (res = scanf("%d", &number)) != EOF) {
+        
+#if USE_DEBUG
+        printf("this: %d\n", number);
 #endif
+        
+        if (res != 1)
+            break;
+        
+        root = addTree(root, number);
+    }
+#if USE_DEBUG
+    printf("end\n");
+#endif
+    
+    treePrint(root);
     return 0;
 }
